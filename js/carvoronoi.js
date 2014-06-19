@@ -4,7 +4,7 @@ var width = $(window).width(),
 var projection = d3.geo.mercator()
     .center([9.1906, 45.4640])
     .translate([width / 2, height / 2])
-    .scale(310000)
+    .scale(280000)
 
 var tile = d3.geo.tile()
     .scale(projection.scale() * 2 * Math.PI)
@@ -111,7 +111,7 @@ d3.json("data/voronoi/times.json", function(json) {
             ciao.enter().append("path")
                // .filter(function(d){ return d.cell.length>0; })
                 .attr("class", "car-cell")
-                .style("fill","#e8c102")
+                .style("fill","none")
                 .style("stroke","#e8c102")
                 .style("stroke-opacity",0)
                 .style("stroke-width",1)
@@ -124,11 +124,20 @@ d3.json("data/voronoi/times.json", function(json) {
                     var a=str+"Z"; return a })*/
                 .transition().duration(200).ease("sin")
                 .attr("d", function(d) { return  "M" + d.cell.join("L") + "Z"; })
-                .style("stroke-opacity",function(d){ return 1-d3.geom.polygon(d.cell).area()/40000})
-                .style("stroke-width",function(d){return 1-d3.geom.polygon(d.cell).area()/10000})
-                .style("fill-opacity",0.05)
+                .style("stroke-opacity",function(d){
+
+                    if(d3.geom.polygon(d.cell).area()>40000) return 0.1;
+                    else return d3.min([0.7, 1-d3.geom.polygon(d.cell).area()/40000])})
+
+                .style("stroke-width",function(d){return 1-d3.geom.polygon(d.cell).area()/10000
 
 
+                })
+                /*.style("fill-opacity",function(d){
+                    if(d3.geom.polygon(d.cell).area()>40000) return 0.1;
+                    else return d3.max([0.1, 0.4-d3.geom.polygon(d.cell).area()/40000])})
+
+*/
             var palle = vorg.selectAll(".car-point")
                 .data(data.cars,function(d){return d.plate})
 
