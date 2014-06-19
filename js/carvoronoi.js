@@ -83,7 +83,7 @@ d3.json("data/voronoi/times.json", function(json) {
     //setInterval(function(){
 
     function computeVoronoi(t) {
-        if(t==times.length) t=0;
+
 
         d3.json("data/voronoi/"+times[t]+".json", function(json) {
             data=json;
@@ -162,15 +162,13 @@ d3.json("data/voronoi/times.json", function(json) {
 
 
             ti++;
-            console.log(ti);
+            if(ti==times.length) ti=0;
+
             setTimeout(function() {
                 computeVoronoi(ti);
             }, 250)
 
         });
-
-
-
         }
     computeVoronoi(ti);
 
