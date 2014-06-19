@@ -10,6 +10,10 @@ body {
 	margin-right:0px;
 }
 
+.container-fluid{
+	padding:0;
+}
+
 hr{
 	border-top: 1px solid #ccc;
 }
@@ -217,7 +221,7 @@ header {
 
 
 /*sections*/
-#section1, #section2, #section3, #section4, #section5{
+#section1, #section2, #section3, #section4{
 	padding: 0;
 }
 
@@ -233,19 +237,19 @@ h1 {
 	margin-top: 0;
 }
 
-.explanation{
-	margin-top: 100px;
-	margin-bottom: 10%;
-}
 
 .explanation-viz{
-	margin-top: 50px;
-	margin-bottom: 150px;
+	margin-top: 150px;
+	margin-bottom: 50px;
 }
 
-.explanation-small{
-	padding-top: 40px;
-	padding-bottom: 40px;
+.explanation-viz-small{
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.viz-full{
+	border-bottom: 20px solid #E8C102;
 }
 
 .grey{
@@ -303,6 +307,14 @@ p{
 /*overview*/
 #section2{
 	background-color: #E8C102;
+}
+
+#section2 h1{
+	color: #333;
+}
+
+#section2 hr{
+	border: 3px solid #333;
 }
 
 .overview-scale{
