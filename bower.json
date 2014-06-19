@@ -1,0 +1,31 @@
+{
+  "name": "carsharing",
+  "version": "0.0.1",
+  "homepage": "https://github.com/densitydesign/carsharing",
+  "authors": [
+    "densitydesign"
+  ],
+  "description": "One week of carsharing in Milan",
+  "main": "index.html",
+  "keywords": [
+    "carsharing",
+    "milan",
+    "data",
+    "visualization",
+    "pallozzi"
+  ],
+  "license": "GNU GPLv3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "d3": "~3.4.8",
+    "mapbox.js": "~1.6.4"
+  }
+}
