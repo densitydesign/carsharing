@@ -27,3 +27,5 @@ node_modules
 # hidden Mac file
 .DS_Store
 
+# bower components
+bower_components/
