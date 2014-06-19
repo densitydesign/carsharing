@@ -171,8 +171,11 @@ d3.json("data/voronoi/times.json", function(json) {
 
 
             ti++;
-            if(ti==times.length) ti=0;
-
+            if(ti==times.length-1) {
+                ti = 0;
+                console.log("reset")
+            }
+            console.log(ti)
             setTimeout(function() {
                 computeVoronoi(ti);
             }, 250)
