@@ -312,18 +312,28 @@ p{
 	float: left;
 }
 
+.label-sum{
+	width: 9%;
+	margin-top: 4px;
+	float: left;
+	text-align:right;
+	color:#fff;
+}
+
 .time{
 	height:23.5%;
 }
 
 .time h4{
 	font-family: "Raleway", sans-serif;
-	font-size: 1em;
+	font-size: 0.8em;
 	text-transform: uppercase;
-	font-weight: 500;
+	font-weight: 700;
 	letter-spacing: 1px;
 	text-align:right;
+	margin-right:8px;
 }
+
 
 
 .overview-img {
@@ -332,10 +342,16 @@ p{
 }
 
 .overview-day{
-	border-right: dotted 1px #555;
 	width: 13%;
 	float: left;
 	padding:0 5px;
+}
+
+.sum-first{
+	border-top: solid 1px #555;
+}
+.sum .overview-day,.sum-first .overview-day {
+	border: none;
 }
 
 .overview-day h4{
@@ -355,6 +371,16 @@ p{
 	font-weight: 700;
 	letter-spacing: 1px;
 	text-align: center;
+}
+
+.overview-day h2{
+	font-family: "Raleway", sans-serif;
+	font-size: 1em;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-align: center;
+	margin-top: 13px;
 }
 
 

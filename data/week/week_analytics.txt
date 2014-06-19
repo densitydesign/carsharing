@@ -13,22 +13,28 @@ Average rent duration date: 801:13:44:21.2
 
 Rents on February 24th: 2608
 Duration on February 24th: 9444796313
-Duration on February 24th date: 109:07:33:16.3
+Duration on February 24th date: 109:07:33:16.3 // 2623
+
 Rents on February 25th: 2747
 Duration on February 25th: 8514908694
-Duration on February 25th date: 98:13:15:08.6
+Duration on February 25th date: 98:13:15:08.6 // 2365
+
 Rents on February 26th: 3283
 Duration on February 26th: 10417145572
-Duration on February 26th date: 120:13:39:05.5
+Duration on February 26th date: 120:13:39:05.5 // 2893
+
 Rents on February 27th: 3364
 Duration on February 27th: 9944935702
-Duration on February 27th date: 115:02:28:55.7
+Duration on February 27th date: 115:02:28:55.7 // 2762
+
 Rents on February 28th: 3245
 Duration on February 28th: 10232732011
-Duration on February 28th date: 118:10:25:32.0
+Duration on February 28th date: 118:10:25:32.0 // 2842
+
 Rents on March 1st: 3938
 Duration on March 1st: 11806252236
-Duration on March 1st date: 136:15:30:52.2
+Duration on March 1st date: 136:15:30:52.2 // 3279
+
 Rents on March 2nd: 3290
 Duration on March 2nd: 8895090675
-Duration on March 2nd date: 102:22:51:30.6
+Duration on March 2nd date: 102:22:51:30.6 // 2470
