@@ -1,6 +1,10 @@
 var width = $(window).width(),
     height = $(window).height();
 
+var focused = false;
+
+var computeVoronoi,ti=0;
+
 var projection = d3.geo.mercator()
     .center([9.1906, 45.4640])
     .translate([width / 2, height / 2])
@@ -110,12 +114,13 @@ var vorg= svg.append("g")
 d3.json("data/voronoi/times.json", function(json) {
 
     times=json;
-    ti=0;
+
 
     //setInterval(function(){
 
-    function computeVoronoi(t) {
+    computeVoronoi=function (t) {
 
+        if(!focused) return;
 
         d3.json("data/voronoi/"+times[t]+".json", function(json) {
             data=json;
@@ -232,10 +237,57 @@ d3.json("data/voronoi/times.json", function(json) {
 
         });
         }
-    computeVoronoi(ti);
+    //computeVoronoi(ti);
 
 })
 
 
+function fireVoronoi (el, focusVoronoi, blurVoronoi) {
+    return function () {
+        if ( elementInViewport(el) ) {
+            focusVoronoi();
+        }else{
+            blurVoronoi();
+        }
+    }
+}
 
+function focusVoronoi() {
+    if(!focused) {
+        focused = true;
+        computeVoronoi(ti);
+    }
+}
+
+function blurVoronoi() {
+    focused = false;
+}
+var voronoiHandler = fireVoronoi($("#voronoi"), focusVoronoi, blurVoronoi);
+
+$(window).on('resize scroll focus blur', voronoiHandler);
+
+
+var vis = (function(){
+    var stateKey, eventKey, keys = {
+        hidden: "visibilitychange",
+        webkitHidden: "webkitvisibilitychange",
+        mozHidden: "mozvisibilitychange",
+        msHidden: "msvisibilitychange"
+    };
+    for (stateKey in keys) {
+        if (stateKey in document) {
+            eventKey = keys[stateKey];
+            break;
+        }
+    }
+    return function(c) {
+        if (c) document.addEventListener(eventKey, c);
+        return !document[stateKey];
+    }
+})();
+
+vis(function(){
+    if (vis()) focusVoronoi();
+    else blurVoronoi();
+});
 
