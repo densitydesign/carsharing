@@ -62,8 +62,104 @@ $('.panel-thumbnail>a').click(function(e){
 });
 
 
+/* map interactive */
+
+var southWest = L.latLng(45.3705,9.0404),
+    northEast = L.latLng(45.5554,9.3288),
+    bounds = L.latLngBounds(southWest, northEast);
+
+var map = L.mapbox.map('map', 'giorgiouboldi.ifkdj2f1', {minZoom:12,maxZoom:15,maxBounds: bounds} )
+var layers = document.getElementById('menu-ui');
+
+// Disable drag and zoom handlers.
+map.touchZoom.disable();
+map.scrollWheelZoom.disable();
+
+addLayer(L.mapbox.tileLayer('giorgiouboldi.cwxt7qfr'), 'Morning <br>06:00-12:00', 2);
+addLayer(L.mapbox.tileLayer('giorgiouboldi.2z55ewmi'), 'Afternoon <br>12:00-18:00', 3);
+addLayer(L.mapbox.tileLayer('giorgiouboldi.xoagu8fr'), 'Evening <br>18:00-00:00', 4);
+addLayer(L.mapbox.tileLayer('giorgiouboldi.vvwh4cxr'), 'Night <br>00:00-06:00', 5);
 
 
+function addLayer(layer, name, zIndex) {
+  
+  layer
+    .setZIndex(zIndex)
+    .setOpacity(0.4)
+    .addTo(map);
+
+  // Create a simple layer switcher that
+  // toggles layers on and off.
+  var link = document.createElement('a');
+  link.href = '#';
+  link.className = 'active';
+  link.innerHTML = name;
+
+  link.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (map.hasLayer(layer)) {
+      map.removeLayer(layer);
+      this.className = '';
+    } else {
+      map.addLayer(layer);
+      this.className = 'active';
+    }
+  };
+
+  layers.appendChild(link);
+}
 
 
+/* video autoplay/pause on scroll */
 
+var froogaloop = $f(playerVimeo)
+
+function elementInViewport(el) {
+
+  var el = el[0]
+
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while(el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top < (window.pageYOffset + window.innerHeight) &&
+    left < (window.pageXOffset + window.innerWidth) &&
+    (top + height) > window.pageYOffset &&
+    (left + width) > window.pageXOffset
+    );
+}
+
+function callbackIn () {
+  setTimeout(
+    function(){
+      froogaloop.api('play')
+    }, 500)
+} 
+
+function callbackOut () {
+  froogaloop.api('pause');
+} 
+
+function fireIfElementVisible (el, callbackIn, callbackOut) {
+  return function () {
+    if ( elementInViewport(el) ) {
+      callbackIn();
+    }else{
+      callbackOut()
+    }
+  }
+}
+
+var videoHandler = fireIfElementVisible($(".video-responsive"), callbackIn, callbackOut);
+
+$(window).on('resize scroll', videoHandler); 
