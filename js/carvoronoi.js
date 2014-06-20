@@ -28,7 +28,9 @@ var svg = d3.select("#voronoi").append("svg")
 
 var data,times;
 
-var format = d3.time.format("%Y-%m-%d %H:%M");
+var hours = d3.time.format("%H:%M");
+var date = d3.time.format("%Y-%m-%d");
+var day = d3.time.format("%A");
 
 
 var defs = svg.append("defs");
@@ -43,6 +45,36 @@ svg.selectAll("image")
     .attr("height", Math.round(tiles.scale))
     .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
     .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
+
+var timegroup=svg.append("g")
+    .attr("class","voronoi-time");
+
+timegroup
+    .append("image")
+    //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+    .attr("xlink:href","img/clock.png")
+    .attr("width",30)
+    .attr("height",30)
+    .attr("x", 30)
+    .attr("y", 30);
+
+timegroup
+    .append("image")
+    //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+    .attr("xlink:href","img/calendar.png")
+    .attr("width",40)
+    .attr("height",40)
+    .attr("x", 30)
+    .attr("y", 80);
+
+timegroup
+    .append("line")
+    //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+    .attr("x1", 30)
+    .attr("y1", 70)
+    .attr("x2", 170)
+    .attr("y2", 70)
+    .style("stroke","#e8c102");
 
 
 d3.json("data/voronoi/milano.json", function(error, topology) {
@@ -158,16 +190,34 @@ d3.json("data/voronoi/times.json", function(json) {
                 .transition().duration(200).ease("sin")
                 .style("opacity",1)
 
-            d3.select("text").remove();
+            d3.selectAll("text").remove();
 
-            svg.append("text")
-                .text(format(new Date(+times[t])))
-                .attr("x",40)
-                .attr("y",40)
-                .attr("font-size",22)
+            timegroup.append("text")
+                .text(hours(new Date(+times[t])))
+                .attr("x",67)
+                .attr("y",55)
+                .attr("font-size",32)
                 .attr("font-family","Raleway")
                 .style("fill","#e8c102")
-                .attr("font-wieght","800")
+                .attr("font-wieght","900")
+
+            timegroup.append("text")
+                .text(date(new Date(+times[t])))
+                .attr("x",80)
+                .attr("y",95)
+                .attr("font-size",14)
+                .attr("font-family","Raleway")
+                .style("fill","#e8c102")
+                .attr("font-wieght","700")
+
+            timegroup.append("text")
+                .text(day(new Date(+times[t])))
+                .attr("x",80)
+                .attr("y",115)
+                .attr("font-size",14)
+                .attr("font-family","Raleway")
+                .style("fill","#e8c102")
+                .attr("font-wieght","700")
 
 
             ti++;
