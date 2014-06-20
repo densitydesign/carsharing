@@ -16,10 +16,11 @@ $('.scroll-top').click(function(){
 })
 
 /* smooth scrolling for nav sections */
-$('#nav .navbar-nav li>a').click(function(){
+$('#nav .navbar-nav li>a').click(function(e){
+    e.preventDefault();
   var link = $(this).attr('href');
   var posi = $(link).offset().top;
-  $('body,html').animate({scrollTop:posi},700);
+  $('body,html').animate({scrollTop:posi+"px"},700);
 });
 
 
