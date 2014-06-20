@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+path {
+  stroke: #000;
+  fill-opacity: .8;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+d3.tsv("data/nil/aggHour.tsv", function(data){
+
+var width = 1200,
+    streamHeight = 50;
+
+var format = d3.time.format("%Y-%m-%d %H:%M:%S");
+
+var carCountDomain = d3.extent(data, function(d){return +d.count})
+
+var timeDomain = d3.extent(data, function(d){return format.parse(d.date)})
+
+data = d3.nest().key(function(d){return d.nil}).entries(data)
+
+data.sort(function(a,b){
+  var a = d3.sum(a.values, function(d){return +d.count})
+  var b = d3.sum(b.values, function(d){return +d.count})
+  return b - a
+})
+
+var height = data.length*streamHeight
+
+var x = d3.time.scale()
+    .domain(timeDomain)
+    .range([0, width-200]);
+
+var y = d3.scale.ordinal()
+    .domain(data.map(function(d){return d.key}))
+    .rangePoints([0, height], 1);
+
+
+
+var yStream = d3.scale.linear()
+    .domain(carCountDomain)
+    .range([1, streamHeight]);
+
+
+var area = d3.svg.area()
+    .interpolate("basis")
+    .x(function(d) { return x(format.parse(d.date)) })
+    .y0(function(d) { return -yStream(+d.count) / 2; })
+    .y1(function(d) { return yStream(+d.count) / 2; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.selectAll("path")
+    .data(data)
+  .enter().append("path")
+    .attr("transform", function(d, i) { return "translate(0," + y(d.key) + ")"; })
+    .style("fill", "#E8C102")
+    .style("stroke", "none")
+    .attr("d", function(d){ return area(d.values)});
+
+svg.selectAll("text")
+      .data(data)
+  .enter().append("text")
+  .attr("x", width-200)
+  .attr("y", function(d){return y(d.key)})
+  .text(function(d){return d.key})
+
+})
+
+</script>
