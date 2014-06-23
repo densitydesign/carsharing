@@ -429,7 +429,7 @@ p{
 	border-radius:0 0 3px 3px;
 }
 .menu-ui a:hover {
-	background:#E8C102;
+	background:#B1AFAF;
 	color:#404040;
 }
 .menu-ui a.active {
@@ -437,7 +437,7 @@ p{
 	color:#333;
 }
 .menu-ui a.active:hover {
-	background:#E8C102;
+	background:#D1AE01;
 }
 
 .leaflet-container a {
@@ -450,6 +450,15 @@ text-decoration: none;
 	width:100%;
 	min-height: 800px;
 	height: 100%;
+}
+
+.filter{
+	background:#fff;
+	position:absolute;
+	top:10px;right:10px;
+	z-index:1;
+	border-radius:3px;
+	width:120px;
 }
 
 /*Video responsive*/

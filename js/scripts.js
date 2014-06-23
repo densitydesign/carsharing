@@ -64,7 +64,6 @@ $('.panel-thumbnail>a').click(function(e){
 
 
 /* map interactive */
-
 var southWest = L.latLng(45.3705,9.0404),
     northEast = L.latLng(45.5554,9.3288),
     bounds = L.latLngBounds(southWest, northEast);
@@ -83,7 +82,6 @@ addLayer(L.mapbox.tileLayer('giorgiouboldi.vvwh4cxr'), 'Night <br>00:00-06:00', 
 
 
 function addLayer(layer, name, zIndex) {
-  
   layer
     .setZIndex(zIndex)
     .setOpacity(0.4)
