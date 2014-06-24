@@ -50,7 +50,7 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
 
     var svglabel = d3.select("#stream-label").append("svg")
         .attr("width", width+pad)
-        .attr("height",30);
+        .attr("height",40);
 
 
     var svg = d3.select("#stream-viz").append("svg")
@@ -151,7 +151,14 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
         .scale(x)
         .orient('bottom')
         .ticks(d3.time.days, 1)
-        .tickFormat(d3.time.format('%A'))
+        .tickFormat(d3.time.format('%a'))
+        .tickSize(0)
+
+    var xdays = d3.svg.axis()
+        .scale(x)
+        .orient('bottom')
+        .ticks(d3.time.days, 1)
+        .tickFormat(d3.time.format('%d/%m'))
         .tickSize(0)
 
     var xAxis2 = d3.svg.axis()
@@ -167,14 +174,20 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
         .call(xAxis)
         .call(adjustTextLabels)
 
+    svglabel.append('g')
+        .attr('class', 'xhours axis')
+        .call(xdays)
+        .attr("transform","translate(0,14)")
+        .call(adjustTextLabels)
+
 
     svglabel.append('g')
         .attr('class', 'x2 axis')
-        .attr("transform","translate(0,20)")
+        .attr("transform","translate(0,30)")
         .call(xAxis2)
 
     d3.select(".x").selectAll("text")
-        .attr("x", 5)
+        .attr("x", 0)
         .attr("dy", 8)
     // .style("text-anchor", null);
 

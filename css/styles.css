@@ -487,8 +487,16 @@ text-decoration: none;
 }
 
 #streams .x text{
+    font-size:14px;
+    text-transform: uppercase;
+}
+
+
+#streams .xhours text{
     font-size:11px;
 }
+
+
 
 #streams .axis path {
     display: none;
@@ -510,4 +518,8 @@ text-decoration: none;
 
 #stream-label.affix-top {
 	top: 0px;
+}
+
+#stream-label {
+    background-color:white;
 }
