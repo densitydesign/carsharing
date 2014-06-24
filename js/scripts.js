@@ -68,7 +68,8 @@ var southWest = L.latLng(45.3705,9.0404),
     northEast = L.latLng(45.5554,9.3288),
     bounds = L.latLngBounds(southWest, northEast);
 
-var map = L.mapbox.map('map', 'giorgiouboldi.ifkdj2f1', {minZoom:12,maxZoom:15,maxBounds: bounds} )
+var map = L.mapbox.map('map', 'giorgiouboldi.ifkdj2f1', {minZoom:12,maxZoom:15} )
+.setView([45.464, 9.194], 13);
 var layers = document.getElementById('menu-ui');
 
 // Disable drag and zoom handlers.
@@ -171,4 +172,53 @@ $(window).on('resize scroll', videoHandler);
 
     }
   })
+
+config = {
+  protocol: "http://",
+  url:      "http://labs.densitydesign.org/carsharing",
+  title:    "Seven days of carsharing in Milan",
+  text:     "Exploring and visualizing seven days of carsharing in Milan",
+  image:    "https://dl.dropboxusercontent.com/u/1994055/cover.png",
+  description:  "Seven days of carsharing in Milan via @densitydesign",
+  ui: {
+    flyout:            "top center",
+    button_font:       "Raleway",
+    button_text:       "Share"
+  },
+  networks: {
+    google_plus: {
+      //  enabled: Enable Google+. [Default: true]
+      // url:     the url you'd like to share to Google+ [Default: config.url]
+    },
+    twitter: {
+     // enabled:  Enable Twitter. [Default: true]
+     url: "http://labs.densitydesign.org/carsharing"
+     // description:    // text to be shared alongside your link to Twitter [Default: config.description]
+    },
+    facebook: {
+     // enabled: // Enable Facebook. [Default: true]
+     // load_sdk: // Load the FB SDK. If false, it will default to Facebook's sharer.php implementation. 
+                // NOTE: This will disable the ability to dynamically set values and rely directly on applicable Open Graph tags.
+                // [Default: true]
+    //  url: // the url you'd like to share to Facebook [Default: config.url]
+    //  app_id: // Facebook app id for tracking shares. if provided, will use the facebook API
+    // title: // title to be shared alongside your link to Facebook [Default: config.title]
+    //  caption: // caption to be shared alongside your link to Facebook [Default: null]
+    // description:   
+    //  image:    
+    },
+    pinterest: {
+      //enabled: // Enable Pinterest. [Default: true]
+      //url:     // the url you'd like to share to Pinterest [Default: config.url]
+      //image:   // image to be shared to Pinterest [Default: config.image]
+      //description:    // text to be shared alongside your link to Pinterest [Default: config.description]
+    },
+    email: {
+      enabled: false,
+      title:     "Look at this project by DensityDesign: Seven days of carsharing in Milan",
+      description:   "Look at this project by DensityDesign: Seven days of carsharing in Milan"
+    }
+  }
+}
+  new Share(".share-button", config);
 

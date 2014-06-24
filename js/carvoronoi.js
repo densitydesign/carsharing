@@ -1,5 +1,5 @@
 var width = $("#voronoi").width(),
-    height = 805;
+    height = $("#voronoi").height();
 
 console.log(width,height)
 
@@ -10,7 +10,7 @@ var computeVoronoi,ti=0;
 var projection = d3.geo.mercator()
     .center([9.1906, 45.4640])
     .translate([width / 2, height / 2])
-    .scale(280000)
+    .scale(238000)
 
 var tile = d3.geo.tile()
     .scale(projection.scale() * 2 * Math.PI)
