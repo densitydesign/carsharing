@@ -185,7 +185,7 @@ d3.json("data/voronoi/times.json", function(json) {
                 .attr("font-size",32)
                 .attr("font-family","Raleway")
                 .style("fill","#e8c102")
-                .attr("font-weight",900)
+                .attr("font-weight",700)
 
             timegroup.append("text")
                 .text(date(new Date(+times[t])))
