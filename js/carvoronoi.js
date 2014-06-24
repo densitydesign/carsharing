@@ -1,5 +1,7 @@
-var width = $(window).width(),
-    height = $(window).height();
+var width = $("#voronoi").width(),
+    height = 805;
+
+console.log(width,height)
 
 var focused = false;
 
@@ -13,7 +15,6 @@ var projection = d3.geo.mercator()
 var tile = d3.geo.tile()
     .scale(projection.scale() * 2 * Math.PI)
     .translate(projection([0, 0]))
-    //.zoomDelta((window.devicePixelRatio || 1) - .5)
     .size([width, height]);
 
 var tiles = tile();
@@ -43,7 +44,6 @@ var defs = svg.append("defs");
 svg.selectAll("image")
     .data(tiles)
     .enter().append("image")
-    //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
     .attr("xlink:href", function(d) { return "http://api.tiles.mapbox.com/v2/giorgiouboldi.ifkdj2f1/" + d[2] + "/" + d[0] + "/" + d[1] + ".jpg"; })
     .attr("width", Math.round(tiles.scale))
     .attr("height", Math.round(tiles.scale))
@@ -55,7 +55,6 @@ var timegroup=svg.append("g")
 
 timegroup
     .append("image")
-    //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
     .attr("xlink:href","img/clock.png")
     .attr("width",30)
     .attr("height",30)
@@ -64,7 +63,6 @@ timegroup
 
 timegroup
     .append("image")
-    //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
     .attr("xlink:href","img/calendar.png")
     .attr("width",40)
     .attr("height",40)
@@ -73,7 +71,6 @@ timegroup
 
 timegroup
     .append("line")
-    //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
     .attr("x1", 30)
     .attr("y1", 70)
     .attr("x2", 170)
@@ -115,9 +112,6 @@ d3.json("data/voronoi/times.json", function(json) {
 
     times=json;
 
-
-    //setInterval(function(){
-
     computeVoronoi=function (t) {
 
         if(!focused) return;
@@ -142,23 +136,14 @@ d3.json("data/voronoi/times.json", function(json) {
             ciao.transition().duration(200).ease("sin")
                 //.filter(function(d){ return d.cell.length>0; })
                 .attr("d", function(d) { return  "M" + d.cell.join("L") + "Z"; })
-               // .style("fill","#a0d3c6")
-               // .style("stroke","#a0d3c6")
 
             ciao.enter().append("path")
-               // .filter(function(d){ return d.cell.length>0; })
                 .attr("class", "car-cell")
                 .style("fill","none")
                 .style("stroke","#e8c102")
                 .style("stroke-opacity",0)
                 .style("stroke-width",1)
                 .style("fill-opacity",0)
-                /*.attr("d", function(d) {
-                    var str="M"+ d.x+","+ d.y;
-                    d.cell.forEach(function(e,j){
-                       str=str+"L"+ d.x+","+ d.y
-                    })
-                    var a=str+"Z"; return a })*/
                 .transition().duration(200).ease("sin")
                 .attr("d", function(d) { return  "M" + d.cell.join("L") + "Z"; })
                 .style("stroke-opacity",function(d){
@@ -170,11 +155,7 @@ d3.json("data/voronoi/times.json", function(json) {
 
 
                 })
-                /*.style("fill-opacity",function(d){
-                    if(d3.geom.polygon(d.cell).area()>40000) return 0.1;
-                    else return d3.max([0.1, 0.4-d3.geom.polygon(d.cell).area()/40000])})
 
-*/
             var palle = vorg.selectAll(".car-point")
                 .data(data.cars,function(d){return d.plate})
 
@@ -195,7 +176,7 @@ d3.json("data/voronoi/times.json", function(json) {
                 .transition().duration(200).ease("sin")
                 .style("opacity",1)
 
-            d3.selectAll("text").remove();
+            d3.selectAll("#voronoi text").remove();
 
             timegroup.append("text")
                 .text(hours(new Date(+times[t])))
@@ -204,7 +185,7 @@ d3.json("data/voronoi/times.json", function(json) {
                 .attr("font-size",32)
                 .attr("font-family","Raleway")
                 .style("fill","#e8c102")
-                .attr("font-wieght","900")
+                .attr("font-weight",900)
 
             timegroup.append("text")
                 .text(date(new Date(+times[t])))
@@ -213,7 +194,7 @@ d3.json("data/voronoi/times.json", function(json) {
                 .attr("font-size",14)
                 .attr("font-family","Raleway")
                 .style("fill","#e8c102")
-                .attr("font-wieght","700")
+                .attr("font-weight",700)
 
             timegroup.append("text")
                 .text(day(new Date(+times[t])))
@@ -222,22 +203,19 @@ d3.json("data/voronoi/times.json", function(json) {
                 .attr("font-size",14)
                 .attr("font-family","Raleway")
                 .style("fill","#e8c102")
-                .attr("font-wieght","700")
+                .attr("font-weight",700)
 
 
             ti++;
             if(ti==times.length-1) {
                 ti = 0;
-                console.log("reset")
             }
-            console.log(ti)
             setTimeout(function() {
                 computeVoronoi(ti);
             }, 250)
 
         });
         }
-    //computeVoronoi(ti);
 
 })
 

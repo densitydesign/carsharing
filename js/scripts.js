@@ -162,3 +162,13 @@ function fireIfElementVisible (el, callbackIn, callbackOut) {
 var videoHandler = fireIfElementVisible($(".video-responsive"), callbackIn, callbackOut);
 
 $(window).on('resize scroll', videoHandler); 
+
+/*Sticky Lables*/
+
+  $('#stream-label').affix({
+    offset: {
+      top: $("#stream-label").offset().top + 675
+
+    }
+  })
+

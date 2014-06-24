@@ -475,3 +475,39 @@ text-decoration: none;
     width:100%;
     position:absolute;
 }
+
+#streams path {
+    stroke: #000;
+    fill-opacity: .8;
+}
+
+#streams .axis line {
+    stroke: #000;
+    fill:none;
+}
+
+#streams .x text{
+    font-size:11px;
+}
+
+#streams .axis path {
+    display: none;
+}
+#streams .v-lines line{
+    opacity:0.5;
+    stroke-width:0.5;
+}
+#streams text{
+    font-family:"Raleway";
+}
+
+#stream-label.affix {
+	position: fixed;
+	top: 57px;
+	z-index:10000;
+	-webkit-transition: all .6s ease-in-out;
+}
+
+#stream-label.affix-top {
+	top: 0px;
+}
