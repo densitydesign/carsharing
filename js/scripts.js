@@ -68,8 +68,13 @@ var southWest = L.latLng(45.3705,9.0404),
     northEast = L.latLng(45.5554,9.3288),
     bounds = L.latLngBounds(southWest, northEast);
 
-var map = L.mapbox.map('map', 'giorgiouboldi.ifkdj2f1', {minZoom:12,maxZoom:15} )
-.setView([45.464, 9.194], 13);
+var map = L.mapbox.map('map', 'giorgiouboldi.ifkdj2f1', {
+                      minZoom:12,
+                      maxZoom:15,
+                      maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
+                    })
+            .setView([45.464, 9.194], 13);
+
 var layers = document.getElementById('menu-ui');
 
 // Disable drag and zoom handlers.
@@ -164,6 +169,20 @@ var videoHandler = fireIfElementVisible($(".video-responsive"), callbackIn, call
 
 $(window).on('resize scroll', videoHandler); 
 
+/*Map nil*/
+var mapNil = L.mapbox.map('nil', 'giorgiouboldi.ik5ijhpf', {
+      attributionControl: false,
+      infoControl: true,
+      minZoom:10,
+      maxZoom:16,
+      maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
+    })
+    .setView([45.460, 9.194], 11);
+
+// Disable drag and zoom handlers.
+mapNil.touchZoom.disable();
+mapNil.scrollWheelZoom.disable();
+
 /*Sticky Lables*/
 
   $('#stream-label').affix({
@@ -178,7 +197,7 @@ config = {
   url:      "http://labs.densitydesign.org/carsharing",
   title:    "Seven days of carsharing in Milan",
   text:     "Exploring and visualizing seven days of carsharing in Milan",
-  image:    "https://dl.dropboxusercontent.com/u/1994055/cover.png",
+  image:    "http://labs.densitydesign.org/carsharing/img/cover.png",
   description:  "Seven days of carsharing in Milan via @densitydesign",
   ui: {
     flyout:            "top center",

@@ -1,8 +1,6 @@
 var width = $("#voronoi").width(),
     height = $("#voronoi").height();
 
-console.log(width,height)
-
 var focused = false;
 
 var computeVoronoi,ti=0;

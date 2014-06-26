@@ -75,7 +75,7 @@
                         <li><a href="#section2">Data overview</a></li>
                         <li><a href="#section3">Routes</a></li>
                         <li><a href="#section4">Hotspots</a></li>
-                        <li><a href="#section5">Areas</a></li>
+                        <li><a href="#section5">Neighbourhoods</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.container -->
@@ -280,7 +280,7 @@ It’s not a surprise to see that for example the service is mostly used during 
     <div class="container">
         <div class="row explanation-viz" >
             <div class="col-xs-12 col-sm-12 col-md-4">
-                <h1>Routes during the day</h1>
+                <h1>Routes during <br>the week</h1>
                 <hr>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-8">
@@ -303,7 +303,7 @@ It’s not a surprise to see that for example the service is mostly used during 
                 <div class="col-xs-12 col-sm-12 col-md-8">
                     <p>Analyzing the availability of cars and their position is also an interesting way to "read" the city and understand the most prominent mobility patterns. Depending on the time of the day and the amount of cars available we can understand which areas of the city are more active and when.<br>
                     In the visualization below we wanted to visualize this using a <a href="http://en.wikipedia.org/wiki/Voronoi_diagram" target="_blank">Voronoi diagram</a>.<br> This kind of visualization not only shows us the position of the cars, represented by yellow dots, but also the area "covered" by each car. The areas around the cars correspond to the region consisting of all points closer to that car than to any other. As we have seen in the other map the most visible pattern is the movement of cars from the center during the day to the more peripheral areas during the night. As a result of this phenomenon, users generally have to walk a lot in the very central areas during the night before reaching a car.<br>
-                    The map was realized using the <a href="http://d3js.org/" target="_blank">d3.js javacript library</a>, which provides tools and algorithms to draw dynamic data visualizations.</p>
+                    The map was realized and animated using the amazing <a href="http://d3js.org/" target="_blank">d3.js javacript library</a></p>
                 </div>
             </div>
         </div>
@@ -317,11 +317,15 @@ It’s not a surprise to see that for example the service is mostly used during 
         <div class="container" >
             <div class="row explanation-viz" >
                 <div class="col-xs-12 col-sm-12 col-md-4">
-                    <h1>Zones</h1>
+                    <h1>neighbourhoods</h1>
                     <hr>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-8">
-                    <p>To better understand the patterns we decided to plot, beside the maps, the number of available cars for each of the 88 N.I.L. (Nuclei di identità locale) using a stream graph. N.I.L. are the new official neighbourhoods in Milan and you can check a map below or download the  <a href="http://dati.comune.milano.it/dato/item/61-61-nil-nuclei-didentita-locale.html" target="_blank">shapefiles</a> from the <a href="http://dati.comune.milano.it/" target="_blank">open data milano platform</a>. <br>
+                    <p>To better understand the patterns we decided to plot, beside the maps, the number of available cars for each of the 88 N.I.L. (Nuclei di identità locale) using a stream graph. N.I.L. are the new official neighbourhoods in Milan: you can check a map below or download the  <a href="http://dati.comune.milano.it/dato/item/61-61-nil-nuclei-didentita-locale.html" target="_blank">shapefiles</a> from the <a href="http://dati.comune.milano.it/" target="_blank">open data milano platform</a>.
+                    </p>
+                    <div id="nil">
+                    </div>
+                    <p>
                     The streams below show the number of cars available every hour for each N.I.L. and they are sorted by the total amount of cars available during the whole week.<br>
                     As we can see the neighbourhoods with the highest number of cars are the more peripheral ones (like Gallaratese and Baggio). In these neighbourhoods we also notice a pretty stable availability of cars while in some other like Duomo (the most central area) or Centrale (the main train station) is clearly visible a pattern of activity during the day.<br>
                     Another curious insight are the peaks we see in some areas that are interested by some particular events like San Siro (the area around the stadium that host FC Inter and AC Milan matches) where is clearly visible a peak on Sunday evening, day of the big match between <a class="link-invisible" href="http://www.datasport.it/calcio/2013-2014/seriea/juventus/serie-a-milan-juventus-0-2-gol-highlights-video.htm" target="_blank">AC Milan and Juventus </a>.
@@ -345,13 +349,11 @@ It’s not a surprise to see that for example the service is mostly used during 
 
         <div class="container-fluid disclaimer">
         <div class="container" >
-                <div class="col-xs-12 col-sm-12 col-md-10">
+                <div class="col-xs-12 col-sm-12 col-md-12">
                     <h3>note</h3>
-                    <p>This project is intended as a small experiment with an Academic purpose. Our goal is to find out new way to explore, analyze and visualize mobility patterns in the city without any commercial or advertising purpose.</br>
-                    As we explain in the previous description we don't have the data about the routes of each car but we used a routing open service to estimate them.</p>
-                    <p>If you are interested about this topic please take a look at this <a href="http://mappable.info/one-week-of-carsharing/" target="_blank" target="_blank">project</a> by <a href="http://mappable.info/" target="_blank">Mappable</a> that have been particularly inspiring for us.</p>
-
-                    </p>
+                    <p class="column4">This project is intended as a small experiment with an Academic purpose. Our goal is to find out new way to explore, analyze and visualize mobility patterns in the city without any commercial or advertising purpose.</br>
+                    As we explain in the previous description we don't have the data about the routes of each car but we used a routing open service to estimate them.
+                    If you are interested about this topic please take a look at this <a href="http://mappable.info/one-week-of-carsharing/" target="_blank" target="_blank">project</a> by <a href="http://mappable.info/" target="_blank">Mappable</a> that have been particularly inspiring for us.</p>
                 </div>
                 </div>
             </div>
@@ -361,16 +363,14 @@ It’s not a surprise to see that for example the service is mostly used during 
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
-                    <p>A project by <a href="http://www.densitydesign.org">DensityDesign Lab</a></p>
+                    <p>A project by <a href="http://www.densitydesign.org">DensityDesign</a> &copy; 2014</p>
                     <a href="http://www.densitydesign.org"><img src="img/density_logo.png"></a>
                     </div>
                     <div class="col-lg-4">
-                        <p>Team</p>
-                        <p>Matteo Azzi, Daniele Ciminieri, Tommaso Elli, <br>Emilio Patuzzo, Sciascia Alessio, Giorgio Uboldi</p>
-                        <p>&copy; 2014</p>
+                        <h3>Team</h3>
+                        <p>Matteo Azzi<br>Daniele Ciminieri<br>Tommaso Elli<br>Emilio Patuzzo<br>Alessio Sciascia<br>Giorgio Uboldi</p>
                     </div>
                     <div class="col-lg-4">
-                        <p>Share</p>
                         <div class="share-button">
                         </div>
                     </div>

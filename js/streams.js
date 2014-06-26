@@ -5,7 +5,7 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
 
     var format = d3.time.format("%Y-%m-%d %H:%M:%S");
 
-    var carCountDomain = d3.extent(data, function(d){return +d.count})
+    var carCountDomain = d3.extent(data, function(d){return Math.round(+d.count)})
 
     var timeDomain = d3.extent(data, function(d){return format.parse(d.date)})
 
@@ -29,11 +29,11 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
         .domain(data.map(function(d){return d.key}))
         .rangePoints([0, height], 1);
 
-
+        console.log(carCountDomain)
 
     var yStream = d3.scale.linear()
         .domain(carCountDomain)
-        .range([1, streamHeight]);
+        .range([0, streamHeight]);
 
     var xlines = d3.svg.axis()
         .scale(x)
@@ -45,8 +45,8 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
     var area = d3.svg.area()
         .interpolate("basis")
         .x(function(d) { return x(format.parse(d.date)) })
-        .y0(function(d) { return -yStream(+d.count) / 2; })
-        .y1(function(d) { return yStream(+d.count) / 2; });
+        .y0(function(d) { return -yStream(Math.round(+d.count)) / 2; })
+        .y1(function(d) { return yStream(Math.round(+d.count)) / 2; });
 
     var svglabel = d3.select("#stream-label").append("svg")
         .attr("width", width+pad)
@@ -57,14 +57,13 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
         .attr("width", width+pad)
         .attr("height", height);
 
-    console.log(data)
-
     svg.selectAll("path")
         .data(data)
         .enter().append("path")
         .attr("transform", function(d, i) { return "translate(0," + y(d.key) + ")"; })
         .style("fill", "#E8C102")
         .style("stroke", "none")
+        .style("stroke-width", "none")
         .attr("d", function(d){ return area(d.values)});
 
     svg.selectAll("text")
@@ -199,11 +198,9 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
             .attr('transform', function(d){return 'translate('+ daysToPixels(1, x, d) / 2 + ',0)'});
     }
 
-// calculate the width of the days in the timeScale
     function daysToPixels(days, timeScale,d1) {
         //var d1 = new Date();
         //timeScale || (timeScale = Global.timeScale);
-        console.log(timeScale(d3.time.day.offset(d1, days)) - timeScale(d1))
         return timeScale(d3.time.day.offset(d1, days)) - timeScale(d1);
     }
 
