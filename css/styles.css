@@ -5,6 +5,15 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+a{
+	color:#CCAD15;
+}
+
+a:hover{
+	color:#E8C102;
+	text-decoration: none;
+}
+
 .row {
 	margin-left:0px;
 	margin-right:0px;
@@ -611,4 +620,24 @@ text-decoration: none;
 
 .share-button.sharer-0 label{
 	background-color:#E8C102!important;
+}
+
+
+.disclaimer {
+margin-top: 200px;
+}
+
+.disclaimer p{
+font-size: 1em;
+}
+
+.disclaimer h3{
+text-align: left;
+font-family: "Raleway", sans-serif;
+font-size: 1em;
+text-transform: uppercase;
+font-weight: 900;
+color: #E8C102;
+letter-spacing: 1px;
+margin-top: 0;
 }
