@@ -116,6 +116,28 @@ function addLayer(layer, name, zIndex) {
   layers.appendChild(link);
 }
 
+/*Map nil*/
+var mapNil = L.mapbox.map('nil', 'giorgiouboldi.ik5ijhpf', {
+      attributionControl: false,
+      infoControl: true,
+      minZoom:10,
+      maxZoom:16,
+      maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
+    })
+    .setView([45.460, 9.194], 11);
+
+// Disable drag and zoom handlers.
+mapNil.touchZoom.disable();
+mapNil.scrollWheelZoom.disable();
+
+/*Sticky Lables*/
+
+  $('#stream-label').affix({
+    offset: {
+      top: $("#stream-label").offset().top
+
+    }
+  })
 
 /* video autoplay/pause on scroll */
 
@@ -168,76 +190,3 @@ function fireIfElementVisible (el, callbackIn, callbackOut) {
 var videoHandler = fireIfElementVisible($(".video-responsive"), callbackIn, callbackOut);
 
 $(window).on('resize scroll', videoHandler); 
-
-/*Map nil*/
-var mapNil = L.mapbox.map('nil', 'giorgiouboldi.ik5ijhpf', {
-      attributionControl: false,
-      infoControl: true,
-      minZoom:10,
-      maxZoom:16,
-      maxBounds: [[45.3705,9.0404],[45.5554,9.3288]]
-    })
-    .setView([45.460, 9.194], 11);
-
-// Disable drag and zoom handlers.
-mapNil.touchZoom.disable();
-mapNil.scrollWheelZoom.disable();
-
-/*Sticky Lables*/
-
-  $('#stream-label').affix({
-    offset: {
-      top: $("#stream-label").offset().top + 675
-
-    }
-  })
-
-config = {
-  protocol: "http://",
-  url:      "http://labs.densitydesign.org/carsharing",
-  title:    "Seven days of carsharing in Milan",
-  text:     "Exploring and visualizing seven days of carsharing in Milan",
-  image:    "http://labs.densitydesign.org/carsharing/img/cover.png",
-  description:  "Seven days of carsharing in Milan via @densitydesign",
-  ui: {
-    flyout:            "top center",
-    button_font:       "Raleway",
-    button_text:       "Share"
-  },
-  networks: {
-    google_plus: {
-      //  enabled: Enable Google+. [Default: true]
-      // url:     the url you'd like to share to Google+ [Default: config.url]
-    },
-    twitter: {
-     // enabled:  Enable Twitter. [Default: true]
-     url: "http://labs.densitydesign.org/carsharing"
-     // description:    // text to be shared alongside your link to Twitter [Default: config.description]
-    },
-    facebook: {
-     // enabled: // Enable Facebook. [Default: true]
-     // load_sdk: // Load the FB SDK. If false, it will default to Facebook's sharer.php implementation. 
-                // NOTE: This will disable the ability to dynamically set values and rely directly on applicable Open Graph tags.
-                // [Default: true]
-    //  url: // the url you'd like to share to Facebook [Default: config.url]
-    //  app_id: // Facebook app id for tracking shares. if provided, will use the facebook API
-    // title: // title to be shared alongside your link to Facebook [Default: config.title]
-    //  caption: // caption to be shared alongside your link to Facebook [Default: null]
-    // description:   
-    //  image:    
-    },
-    pinterest: {
-      //enabled: // Enable Pinterest. [Default: true]
-      //url:     // the url you'd like to share to Pinterest [Default: config.url]
-      //image:   // image to be shared to Pinterest [Default: config.image]
-      //description:    // text to be shared alongside your link to Pinterest [Default: config.description]
-    },
-    email: {
-      enabled: false,
-      title:     "Look at this project by DensityDesign: Seven days of carsharing in Milan",
-      description:   "Look at this project by DensityDesign: Seven days of carsharing in Milan"
-    }
-  }
-}
-  new Share(".share-button", config);
-

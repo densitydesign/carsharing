@@ -29,8 +29,6 @@ d3.tsv("data/nil/aggHour.tsv", function(data){
         .domain(data.map(function(d){return d.key}))
         .rangePoints([0, height], 1);
 
-        console.log(carCountDomain)
-
     var yStream = d3.scale.linear()
         .domain(carCountDomain)
         .range([0, streamHeight]);
