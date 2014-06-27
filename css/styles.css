@@ -526,6 +526,9 @@ text-decoration: none;
 #nil .map-tooltip-content h2{
 	margin: 0;
 	font-size: 1em;
+	font-family: "Raleway", sans-serif;
+	letter-spacing: 1px;
+	font-weight: 700;
 }
 
 #streams path {
