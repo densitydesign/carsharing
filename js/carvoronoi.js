@@ -210,7 +210,7 @@ d3.json("data/voronoi/times.json", function(json) {
             }
             setTimeout(function() {
                 computeVoronoi(ti);
-            }, 250)
+            }, 150)
 
         });
         }
