@@ -1,0 +1,13 @@
+{
+  "name": "vimeo-api",
+  "_cacheHeaders": {
+    "ETag": "\"2687111a215bc14e75156503d58686ee4fad3c57\"",
+    "Content-Length": "1824",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:2687111a2",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/vimeo/player-api/master/javascript/froogaloop.min.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/vimeo/player-api/master/javascript/froogaloop.min.js"
+}
